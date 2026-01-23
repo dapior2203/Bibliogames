@@ -1,4 +1,5 @@
 const cartes = document.querySelectorAll(".cartes");
+const sonFlip = new Audio("sounds/flip.mp3");
 const symboles = [
   "images/carte1.png",
   "images/carte2.png",
@@ -32,9 +33,14 @@ faceCartes.innerHTML = `
 `;
 
     
-    carte.addEventListener("click", () => {
-        if (bloquer || carte.classList.contains("retournee")) return;
-        retournerCarte(carte);
+carte.addEventListener("click", () => {
+    if (bloquer || carte.classList.contains("retournee")) return;
+
+    sonFlip.currentTime = 0; // 🔥 important
+    sonFlip.play();
+
+    retournerCarte(carte);
+
         if (!premiereCarte) {
             premiereCarte = carte;
         } else {
