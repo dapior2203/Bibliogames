@@ -31,15 +31,29 @@ break;
 }
 renderCurrent();
 }
+function removeColor(index){
+    /*on verifie si la case n'est pas verrouiléé */
+    if(!locked[index]){
+        /*on remet la valeur a null pour indiquer que la case est vide */
+        currentGuess[index] = null
+        /*on redessine l'affichage pour que l'utilisateur voie le changment */
+        renderCurrent()
+    }
+}
+
 
 function renderCurrent() {
 currentDiv.innerHTML = "";
 for (let i = 0; i < CODE_LENGTH; i++) {
-const peg = document.createElement("div");
-peg.className = "peg";
-if (currentGuess[i]) peg.classList.add(currentGuess[i]);
-if (locked[i]) peg.style.border = "3px solid black"; // indique verrouillage
-currentDiv.appendChild(peg);
+    /*on crée un élément HTML <div> pour représenter la bille */
+    const peg = document.createElement("div");
+    peg.className = "peg";
+    /*si une couleur est choisie pour cette index on l'ajoute comme classe css */
+    if (currentGuess[i]) peg.classList.add(currentGuess[i]);
+    if (locked[i]) peg.style.border = "3px solid black"; // indique verrouillage
+    // interactivite au clic sur la bille on appelle removeColor pour cette index
+    peg.onclick = () => removeColor(i);
+    currentDiv.appendChild(peg);
 }
 }
 
@@ -49,35 +63,45 @@ if (attempts >= MAX_TRIES) return;
 
 const allFilled = currentGuess.every((c, i) => locked[i] || c);
 if (!allFilled) {
-messageDiv.textContent = "Remplis toutes les cases non verrouillées !";
+messageDiv.textContent = "Remplis toutes les cases !";
 return;
 }
 
 attempts++;
 const feedback = evaluateGuessByPosition(secret, currentGuess);
 
+
+const wellPlaced = feedback.filter(f => f === "green").length;
+const wrongPlaced = feedback.filter(f => f === "yellow").length;
+
+
+messageDiv.innerHTML = `Essai ${attempts} : <br>
+    ${wellPlaced} bien placée(s) <br> 
+    ${wrongPlaced} présent mal placée(s)`;
+
+
 // verrouille les positions correctes
 for (let i = 0; i < CODE_LENGTH; i++) {
-if (feedback[i] === "green") {
-locked[i] = true;
-}
+    if (feedback[i] === "green") {
+    locked[i] = true;
+    }
 }
 
 renderRow(currentGuess, feedback);
 
-if (feedback.every(f => f === "green")) {
-messageDiv.textContent = "🎉 Bravo, tu as gagné !";
-} else if (attempts === MAX_TRIES) {
-messageDiv.textContent = "❌ Perdu ! Code : " + secret.join("");
-}
+    if (feedback.every(f => f === "green")) {
+    messageDiv.textContent = "🎉 Bravo, tu as gagné !";
+    } else if (attempts === MAX_TRIES) {
+    messageDiv.textContent = "❌ Perdu ! Code : " + secret.join("");
+    }
 
-// prépare le prochain essai (les cases verrouillées restent, les autres deviennent null)
-for (let i = 0; i < CODE_LENGTH; i++) {
-if (!locked[i]) currentGuess[i] = null;
-}
-renderCurrent();
-}
-
+    // prépare le prochain essai (les cases verrouillées restent, les autres deviennent null)
+    for (let i = 0; i < CODE_LENGTH; i++) {
+    if (!locked[i]) currentGuess[i] = null;
+    }
+    renderCurrent();
+}/*@returns.{Array}
+ */
 // ⚙️ Feedback par position : green / yellow / gray
 function evaluateGuessByPosition(secret, guess) {
 const feedback = Array(CODE_LENGTH).fill("gray");
@@ -109,24 +133,25 @@ return feedback;
 }
 
 function renderRow(guess, feedback) {
-const row = document.createElement("div");
-row.className = "row";
+    const row = document.createElement("div");
+    row.className = "row";
 
-guess.forEach(c => {
-const peg = document.createElement("div");
-peg.className = 'peg ${c}';
-row.appendChild(peg);
-});
+    guess.forEach(c => {
+        const peg = document.createElement("div");
+        // Utilise bien les ` ` (touches AltGr + 7 ou touche à gauche de Entrée)
+        peg.className = `peg ${c}`; 
+        row.appendChild(peg);
+    });
 
-const feedbackDiv = document.createElement("div");
-feedbackDiv.className = "feedback";
+    const feedbackDiv = document.createElement("div");
+    feedbackDiv.className = "feedback";
 
-feedback.forEach(f => {
-const dot = document.createElement("div");
-dot.className = 'dot ${f}';
-feedbackDiv.appendChild(dot);
-});
+    feedback.forEach(f => {
+        const dot = document.createElement("div");
+        dot.className = `dot ${f}`; // Idem ici, utilise les ` `
+        feedbackDiv.appendChild(dot);
+    });
 
-row.appendChild(feedbackDiv);
-board.appendChild(row);
+    row.appendChild(feedbackDiv);
+    board.appendChild(row);
 }
