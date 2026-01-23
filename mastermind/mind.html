@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Mastermind</title>
+<style>
+
+
+h1 { margin-bottom: 10px; }
+
+.colors button {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+border: none;
+margin: 5px;
+cursor: pointer;
+}
+
+.R { background: red; }
+.G { background: green; }
+.B { background: blue; }
+.Y { background: gold; }
+.O { background: orange; }
+.P { background: purple; }
+
+.row {
+display: flex;
+align-items: center;
+margin: 5px 0;
+}
+
+.peg {
+width: 25px;
+height: 25px;
+border-radius: 50%;
+margin-right: 5px;
+}
+
+.black { background: black; }
+.white { background: white; border: 1px solid #000; }
+
+#current {
+margin: 15px 0;
+}
+
+#message {
+margin-top: 15px;
+font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<h1>🎯 Mastermind</h1>
+
+<div class="colors">
+<button class="R" onclick="addColor('R')"></button>
+<button class="G" onclick="addColor('G')"></button>
+<button class="B" onclick="addColor('B')"></button>
+<button class="Y" onclick="addColor('Y')"></button>
+<button class="O" onclick="addColor('O')"></button>
+<button class="P" onclick="addColor('P')"></button>
+</div>
+
+<div id="current"></div>
+<button onclick="play()">Valider</button>
+
+<hr>
+
+<div id="board"></div>
+<div id="message"></div>
+
+<script src="mastermind.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f600d1, #fed6e3); /*Couleur du fond en dégradé (à changer si besoin)*/
+    padding: 30px;
+    min-height: 110px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    font-size: 64px;
+}
+
+h1 {
+    font-size: 48px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.choix {
+    color: #666;
+    font-size: 18px;
+}
+
+.interface-jeux {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.jeux {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.jeux:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.icon {
+    font-size: 64px;
+    margin-bottom: 15px;
+}
+
+.titre-jeux {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.description-jeux {
+    color: #666;
+    font-size: 16px;
+}
+
+a{
+    text-decoration: none;
+}
