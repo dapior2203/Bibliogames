@@ -5,6 +5,7 @@ body {
     background: linear-gradient(135deg, #f600d1, #fed6e3); /*Couleur du fond en dégradé (à changer si besoin)*/
     padding: 30px;
     min-height: 110px;
+    height: 93dvh;
 }
 
 .container {
@@ -77,4 +78,45 @@ h1 {
 
 a{
     text-decoration: none;
+}
+
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #190a41; /* Couleur de fond de l'accueil */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Toujours au-dessus */
+    
+    /* On applique l'animation nommée "fadeOut" */
+    /* 1s de fondu après 4s d'attente = 5s au total */
+    animation: fadeOut 1s forwards;
+    animation-delay: 4s; 
+}
+
+/* Animation pour faire disparaître l'écran */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Optionnel : Empêcher le scroll pendant le chargement */
+body {
+    overflow: hidden;
+    animation: allowScroll 0s forwards;
+    animation-delay: 5s;
+}
+
+@keyframes allowScroll {
+    to { overflow: auto; }
 }
