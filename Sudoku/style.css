@@ -1,0 +1,133 @@
+body {
+  background-color: rgb(67, 169, 217);
+}
+
+#container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 50px;
+  align-items: start;
+  justify-content: center;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 1600px;
+  width: 100%;
+}
+
+h1 {
+  -webkit-text-stroke: 1px Black;
+  color: White;
+  text-shadow:
+    3px 3px 0 #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  font-size: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+h2 {
+  -webkit-text-stroke: 1px Black;
+  color: White;
+  text-shadow:
+    3px 3px 0 #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  font-size: 35px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#sudoku {
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#regles,
+#help {
+  max-width: 300px;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 15px;
+  border-radius: 10px;
+  place-items: center;
+}
+
+#sudoku-container {
+  display: grid;
+  grid-template-columns: repeat(9, 50px); /* 9 colonnes de 50px */
+  grid-template-rows: repeat(9, 50px); /* 9 lignes de 50px */
+  gap: 2px; /* Un petit espace entre les cases */
+}
+
+input {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 25px;
+}
+
+button {
+  margin: 10px;
+  padding: 10px;
+  font-size: large;
+  font-weight: bold;
+  border-radius: 15px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#sudoku-container {
+  display: grid;
+  grid-template-columns: repeat(9, 50px);
+  gap: 0;
+  width: fit-content;
+  border: 3px solid #000;
+}
+
+#sudoku-container input {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 20px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Bordures épaisses à droite pour les colonnes 3 et 6 */
+#sudoku-container input:nth-child(9n + 3),
+#sudoku-container input:nth-child(9n + 6) {
+  border-right: 3px solid #000;
+}
+
+/* Bordures épaisses en bas pour les lignes 3 et 6 */
+#sudoku-container input:nth-child(n + 19):nth-child(-n + 27),
+#sudoku-container input:nth-child(n + 46):nth-child(-n + 54) {
+  border-bottom: 3px solid #000;
+}
+
+/* Suppression des bordures redondantes */
+#sudoku-container input {
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+#sudoku-container input:nth-child(-n + 9) {
+  border-top: none;
+}
+
+#sudoku-container input:nth-child(9n + 1) {
+  border-left: none;
+}
+
+p {
+  font-size: 20px;
+}

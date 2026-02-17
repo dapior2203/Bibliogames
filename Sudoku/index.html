@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sudoku</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <h1>Sudoku</h1>
+    <div id="container">
+      <div id="regles">
+        <h2>Régles</h2>
+        <p>
+          Le but du Sudoku est de remplir une grille de 9 x 9 cases avec des
+          chiffres, afin que chaque ligne, chaque colonne et section de 3x3
+          contienne les chiffres de 1 à 9. <br /><br />Au début du jeu, la
+          grille de 9x9 aura des cases déjà remplies. Votre tâche consistera à
+          vous baser sur la logique pour remplir les chiffres manquants et
+          compléter la grille.<br /><br />
+          Notez qu’un déplacement est incorrect si : Chaque ligne contient
+          plusieurs du même chiffre de 1 à 9 Chaque colonne contient plusieurs
+          du même chiffre de 1 à 9 Chaque grille de 3x3 cases contient plusieurs
+          du même chiffre de 1 à 9.
+        </p>
+      </div>
+
+      <div id="sudoku">
+        <div id="sudoku-container"></div>
+        <!--<button id="btn-check">Vérifier ma grille</button>-->
+        <button id="btn-generate">Nouvelle Partie</button>
+        <button id="btn-assistance">Mode Assistance</button>
+        <script>
+          startGame();
+        </script>
+      </div>
+
+      <div id="help">
+        <h2>Assistance</h2>
+        <p>
+          L'assistance est la pour vous guidez et vous avertir : <br /><br />
+          - <b>If</b> il y a un doublon dans la ligne.<br /><br />
+          - <b>If</b> il y a un doublon dans la colonne.<br /><br />
+          - <b>If</b> il y a un doublon dans votre carré/section. <br /><br />
+          - <b>Else</b>, débrouille toi 😜​
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
